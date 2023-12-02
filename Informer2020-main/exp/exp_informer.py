@@ -242,6 +242,9 @@ class Exp_Informer(Exp_Basic):
         for i, (batch_x,batch_y,batch_x_mark,batch_y_mark) in enumerate(pred_loader):
             pred, true = self._process_one_batch(
                 pred_data, batch_x, batch_y, batch_x_mark, batch_y_mark)
+            pred = pred_data.inverse_transform(pred)
+            print(pred) 
+            
             preds.append(pred.detach().cpu().numpy())
 
         preds = np.array(preds)
